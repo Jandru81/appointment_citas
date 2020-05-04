@@ -1,6 +1,30 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 
 const Formulario = () => {
+
+    // Crear State de Citas
+    const [cita, setcita] = useState({
+        pet: '',
+        owner:'',
+        date:'',
+        time:'',
+        symptons:''
+
+    })
+
+    // Función que se ejecuta cada vez que el usuario escribe un input
+
+    const handleChange = e => {
+        setcita({
+            ...cita,
+            [e.target.name]: e.target.value
+        })
+    }
+
+    //Extraer los valores
+
+    const {pet, owner, date, time, symptons } = cita;
+
     return (
         <Fragment>
             <h2>Crear Cita</h2>
@@ -11,33 +35,41 @@ const Formulario = () => {
                     type="text"
                     name="pet"
                     className="u-full-width"
-                    placeholder="Pet Name" 
+                    placeholder="Pet Name"
+                    onChange={handleChange} 
+                    value={pet}
                 /> 
             <label>Owner</label>
                 <input
                     type="text"
-                    name="Owner"
+                    name="owner"
                     className="u-full-width"
-                    placeholder="Owner Name"     
+                    placeholder="Owner Name"
+                    onChange={handleChange} 
+                    value={owner}     
                 /> 
                 <label>Date</label>
                 <input
                     type="date"
                     name="date"
                     className="u-full-width"
-                    
+                    onChange={handleChange} 
+                    value={date}
                 /> 
                <label>Time</label>
                 <input
                     type="time"
                     name="time"
                     className="u-full-width"
-                    
+                    onChange={handleChange} 
+                    value={time}
                 /> 
                 <label>Symptons</label>
                 <textarea
                     name="symptons"
                     className="u-full-width"
+                    onChange={handleChange} 
+                    value={symptons}
                     ></textarea>
                     <button
                         type="submit"
